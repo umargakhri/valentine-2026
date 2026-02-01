@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+h1 {
+  color: #ff4d6d;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+#yesBtn {
+  background: #ff4d6d;
+  color: white;
+}
+
+#noBtn {
+  background: #ccc;
+  position: absolute;
+}
+
+.flowers {
+  font-size: 35px;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.option {
+  border: 2px solid #ff4d6d;
+  border-radius: 15px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.option img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.option:hover {
+  background: #ffe5ec;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="card" id="page1">
+  <h1>Will you be my Valentine? ❤️</h1>
+  <button id="yesBtn">Yes 💕</button>
+  <button id="noBtn">No 🙄</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="card hidden" id="page2">
+  <h1>You said YES 😍</h1>
+  <div class="flowers">💐 🌹 💝</div>
+  <button id="foodBtn">Next →</button>
+</div>
+
+<!-- PAGE 3 FOOD -->
+<div class="card hidden" id="page3">
+  <h1>What would you like to eat? 😋</h1>
+
+  <div class="options">
+    <div class="option" onclick="wrongChoice()">
+      <img src="sushi.jpg">
+      Sushi 🍣
+    </div>
+
+    <div class="option" onclick="wrongChoice()">
+      <img src="italian.jpg">
+      Italian 🍝
+    </div>
+
+    <div class="option" onclick="wrongChoice()">
+      <img src="indian.jpg">
+      Indian 🍛
+    </div>
+
+    <div class="option" onclick="wrongChoice()">
+      Me 😏
+    </div>
+
+    <div class="option" onclick="bestChoice()">
+      Italian & Me 😍
+    </div>
+  </div>
+
+  <div class="error" id="errorMsg"></div>
+</div>
+
+<!-- PAGE 4 BEST CHOICE -->
+<div class="card hidden" id="page4">
+  <h1>Perfect Choice ❤️</h1>
+  <p>
+    Wow… you literally have the <strong>best taste in the world</strong> 😍<br><br>
+    Italian food with me is not just a dinner,<br>
+    it’s a <strong>memory in the making</strong> 💖
+  </p>
+  <button onclick="finalPage()">Next →</button>
+</div>
+
+<!-- PAGE 5 FINAL -->
+<div class="card hidden" id="page5">
+  <h1>It’s a Date 💘</h1>
+  <p>
+    See you at <strong>19:30</strong><br>
+    on <strong>14th February</strong> ❤️<br><br>
+    Bring your <strong>hot dress</strong> 😏🔥
+  </p>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.transform =
+    `translate(${Math.random()*200}px, ${Math.random()*200}px)`;
+});
+
+document.getElementById("yesBtn").onclick = () => {
+  page1.classList.add("hidden");
+  page2.classList.remove("hidden");
+};
+
+document.getElementById("foodBtn").onclick = () => {
+  page2.classList.add("hidden");
+  page3.classList.remove("hidden");
+};
+
+function wrongChoice() {
+  document.getElementById("errorMsg").innerText =
+    "Hmm… not the best choice 😅 Please select again ❤️";
+}
+
+function bestChoice() {
+  page3.classList.add("hidden");
+  page4.classList.remove("hidden");
+}
+
+function finalPage() {
+  page4.classList.add("hidden");
+  page5.classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
